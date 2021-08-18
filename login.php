@@ -57,8 +57,8 @@ if( isset($_POST["login"]) ){
 						<p style="color: red; font-style: italic">Nip / Password Salah</p>
 					<?php endif; ?>
 
-				<p><input type="text" onkeypress="return onlyNumberKey(event)" minlength="18" maxlength="19" class="form-control" placeholder="NIP" name ="nip" id="nip">
-				<p><input type="password" minlength="8" class="form-control" placeholder="Password" name ="password" id="password">
+				<p><input type="text" onkeypress="return onlyNumberKey(event)" minlength="18" maxlength="19" class="form-control" placeholder="NIP" name ="nip" id="nip" required>
+				<p><input type="password" minlength="8" class="form-control" placeholder="Password" name ="password" id="password" required>
 				<button type="submit" name="login"></button>
 			<form>
 		</div>
