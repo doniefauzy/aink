@@ -54,14 +54,7 @@ if( isset($_POST["login"]) ){
 			<form action="" method="post">
 				<h2>Silahkan Login..</h2>
 				<?php if( isset($error)) : ?>
-						<p style="color: red; font-style: italic">Nip/Password Salah</p>
-
-
-						<!-- <script>
-						function myFunction() {
-						  alert("NIP / Password Salah!");
-						}
-						</script> -->
+						<p style="color: red; font-style: italic">Nip / Password Salah</p>
 					<?php endif; ?>
 
 				<p><input type="text" onkeypress="return onlyNumberKey(event)" minlength="18" maxlength="19" class="form-control" placeholder="NIP" name ="nip" id="nip">
@@ -70,40 +63,6 @@ if( isset($_POST["login"]) ){
 			<form>
 		</div>
 		</div>
-
-
-
-
-
-
-
-
-
-
-		<!-- <div class="panel panel-default">
-			<form action="" method="post">
-				<div class="col-md-4 col-md-offset-4 kotak">
-					<h3>Silahkan Login ..</h3>
-
-					<?php if( isset($error)) : ?>
-						<p style="color: red; font-style: italic">Nip/Password Salah</p>
-					<?php endif; ?>
-
-					<div class="input-group">
-						<label for= "nip">NIP :</label>
-						<input type="number" minlength="18" maxlength="19" class="form-control" placeholder="NIP" name ="nip" id="nip">
-					</div>
-					<div class="input-group">
-						<label for= "password">Password :</label>
-						<input type="password" minlength="8" class="form-control" placeholder="Password" name ="password" id="password">
-					</div>
-					<div class="input-group">			
-						<input type="submit" class="btn btn-primary" name="login" value="Login">
-					</div>
-				</div>
-			</form>
-		</div> -->
-
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
 	<script>window.jQuery || document.write("<script src='js/jquery-1.5.1.min.js'>\x3C/script>")</script>
