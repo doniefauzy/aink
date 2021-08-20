@@ -39,7 +39,7 @@ $sort == "DESC" ? $sort = "ASC" : $sort = "DESC";
 	<script type="text/javascript" src="js/jquery-ui/jquery-ui.js"></script>
 </head>
 <body>
-<h3><span class="glyphicon glyphicon-briefcase"></span>  Pegawai</h3>
+<h3><span class=""></span>  Pegawai</h3>
 <br/>
 <br/>
 
@@ -51,8 +51,17 @@ $jum=$jumlah_record->num_rows;
 $halaman=ceil($jum / $per_hal);
 $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 $start = ($page - 1) * $per_hal;
+
+if(isset($_POST['search']))
+{
+    $search = htmlentities($_POST['search']);
+}
+else
+{
+    $search = '';
+}
 ?>
-<div class="col-md-12">
+<!-- <div class="col-md-12">
 	<table class="col-md-2">
 		<tr>
 			<td>Jumlah Record</td>		
@@ -63,23 +72,55 @@ $start = ($page - 1) * $per_hal;
 			<td><?php echo $halaman; ?></td>
 		</tr>
 	</table>
-</div>
+</div> -->
+
+<!-- <?php
+
+// if data 'search' posted in POST method, make it safe in HTML then store it in $search. If 'search' data was not posted, fill it with an empty string ('')
+$search = (isset($_GET['search'])) ? htmlentities($_GET['search']) : '';
+$search = (isset($_GET['reset'])) ? '' : $search;
+
+?> -->
+
 <form action="" method="get">
 	<div class="input-group col-md-5 col-md-offset-7">
-		<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span>
-		<input type="text" class="form-control" placeholder="Cari .." aria-describedby="basic-addon1" name="cari">	
+		<!-- <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span> -->
+		<!-- <input type="text" id="myInput" class="form-control" onkeyup="myFunction()" placeholder="Cari.." aria-describedby="basic-addon1" name="cari"> -->
+
+		<input type="text" class="form-control" placeholder="Cari .." aria-describedby="basic-addon1" name="cari" id="cari" value="<?php $search ?>">
 	</div>
 </form>
 <br/>
+<div id="container">
 <table class="table table-hover" id="myTable">
 	<tr>
 		<th class="col-md-4" id="nama" onclick="sortTable(0)">Nama</th>
-		<th class="col-md-4" id="jabatan" onclick="sortTable(0)">Jabatan</th>
+		<th class="col-md-4" id="jabatan" onclick="sortTable(1)">Jabatan</th>
 	</tr>
-	<?php 
+	<?php
+
+	$per_hal=10;
+
 	if(isset($_GET['cari'])){
 		$cari=mysqli_real_escape_string($conn, $_GET['cari']);
-		$pgw=mysqli_query($conn, "select * from pegawai where nama like '$cari' or jabatan like '$cari'");
+		$jumlah_record=mysqli_query($conn, "SELECT * from pegawai where nama like '%$cari%' or jabatan like '%$cari%'");
+		$jum=$jumlah_record->num_rows;
+		$halaman=ceil($jum / $per_hal);
+		$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+		$start = ($page - 1) * $per_hal;
+	}else{
+		$jumlah_record=mysqli_query($conn, "SELECT * from pegawai");
+		$jum=$jumlah_record->num_rows;
+		$halaman=ceil($jum / $per_hal);
+		$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+		$start = ($page - 1) * $per_hal;
+	}
+
+	
+
+	if(isset($_GET['cari'])){
+		$cari=mysqli_real_escape_string($conn, $_GET['cari']);
+		$pgw=mysqli_query($conn, "select * from pegawai where nama like '%$cari%' or jabatan like '%$cari%' limit $start, $per_hal");
 	}else{
 		$pgw=mysqli_query($conn, "select * from pegawai order by $order $sort limit $start, $per_hal");
 	}
@@ -95,7 +136,8 @@ $start = ($page - 1) * $per_hal;
 	}
 	?>
 	</table>
-<ul class="pagination">			
+
+		<ul class="pagination">			
 			<?php 
 			for($x=1;$x<=$halaman;$x++){
 				?>
@@ -104,9 +146,9 @@ $start = ($page - 1) * $per_hal;
 			}
 			?>						
 		</ul>
+</div>
 
-
-<script>window.jQuery || document.write("<script src='js/jquery-1.5.1.min.js'>\x3C/script>")</script>
 <script src="js/app.js"></script>
+<script>window.jQuery || document.write("<script src='js/jquery-1.5.1.min.js'>\x3C/script>")</script>
 </body>
 </html>

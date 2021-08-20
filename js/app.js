@@ -1,3 +1,68 @@
+$(document).ready(function() {
+
+  // var cari = document.getElementById('cari');
+  //   cari.addEventListener('keyup', function() {
+  //   console.log('ok');
+  // });
+
+  $('#cari').on('keyup', function() {
+    $('#container').load('ajax/pegawai.php?cari=' + $('#cari').val());
+  });
+
+
+});
+
+
+
+
+
+
+// var cari = document.getElementById('cari');
+// var container = document.getElementById('container');
+
+
+
+
+// cari.addEventListener('keyup', function(){
+
+//   var xhr = new XMLHttpRequest();
+//   xhr.onreadystatechange = function(){
+//     if( xhr.readyState == 4 && xhr.status == 200 ) {
+//       console.log('ajax ok');
+
+//       // container.innerHTML = xhr.responseText;
+//     }
+//   }
+
+//   xhr.open('GET', 'ajax/pegawai.php?cari' + cari.value, true);
+
+
+// });
+
+
+
+
+
+// function myFunction() {
+//     var input, filter, ul, li, a, i, txtValue;
+//     input = document.getElementById("myInput");
+//     filter = input.value.toUpperCase();
+//     ul = document.getElementById("myUL");
+//     li = ul.getElementsByTagName("li");
+//     for (i = 0; i < li.length; i++) {
+//         a = li[i].getElementsByTagName("a")[0];
+//         txtValue = a.textContent || a.innerText;
+//         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//             li[i].style.display = "";
+//         } else {
+//             li[i].style.display = "none";
+//         }
+//     }
+// }
+
+
+
+
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("myTable");
