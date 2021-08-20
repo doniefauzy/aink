@@ -46,28 +46,6 @@ $sort == "DESC" ? $sort = "ASC" : $sort = "DESC";
 <br/>
 <br/>
 
-
-<!-- <div class="col-md-12">
-	<table class="col-md-2">
-		<tr>
-			<td>Jumlah Record</td>		
-			<td><?php echo $jum; ?></td>
-		</tr>
-		<tr>
-			<td>Jumlah Halaman</td>	
-			<td><?php echo $halaman; ?></td>
-		</tr>
-	</table>
-</div> -->
-
-<!-- <?php
-
-// if data 'search' posted in POST method, make it safe in HTML then store it in $search. If 'search' data was not posted, fill it with an empty string ('')
-$search = (isset($_GET['search'])) ? htmlentities($_GET['search']) : '';
-$search = (isset($_GET['reset'])) ? '' : $search;
-
-?> -->
-
   <div class="row">
     <div class="col-md-5">
       <div class="panel panel-default">
@@ -95,11 +73,6 @@ $search = (isset($_GET['reset'])) ? '' : $search;
   </div>
 
 
-<!-- <form action="" method="get">
-	<div class="input-group col-md-5 col-md-offset-7">
-		<input type="text" class="form-control" placeholder="Cari .." aria-describedby="basic-addon1" name="cari" id="cari" value="<?php $search; ?>">
-	</div>
-</form> -->
 <br/>
 <div id="container">
 <table class="table table-hover" id="myTable">
@@ -118,20 +91,18 @@ $search = (isset($_GET['reset'])) ? '' : $search;
 	     
 	      $kolomcari=(isset($_GET['cari']))? $_GET['cari'] : "";
 
-	      // Jumlah data per halaman
 	      $limit = 10;
 
 	      $limitStart = ($page - 1) * $limit;
-	      
-	      //kondisi jika parameter pencarian kosong
+
 	      if($kolomCari=="" && $kolomcari==""){
 	        $SqlQuery = mysqli_query($conn, "SELECT * FROM pegawai LIMIT ".$limitStart.",".$limit);
 	      }else{
-	        //kondisi jika parameter kolom pencarian diisi
+
 	        $SqlQuery = mysqli_query($conn, "SELECT * FROM pegawai WHERE $kolomCari LIKE '%$kolomcari%' LIMIT ".$limitStart.",".$limit);
 	      }
 	      
-	      // $no = $limitStart + 1;
+
 	      
 	      while($row = mysqli_fetch_assoc($SqlQuery)){ 
 	      ?>
@@ -189,7 +160,6 @@ $search = (isset($_GET['reset'])) ? '' : $search;
 	      <?php
 	        if($page == 1){ 
 	      ?>        
-	        <!-- link Previous Page disable --> 
 	        <li class="disabled"><a href="#">Previous</a></li>
 	      <?php
 	        }
@@ -209,7 +179,7 @@ $search = (isset($_GET['reset'])) ? '' : $search;
 	      ?>
 
 	      <?php
-	        //kondisi jika parameter pencarian kosong
+
 	        if($kolomCari=="" && $kolomcari==""){
 	          $SqlQuery = mysqli_query($conn, "SELECT * FROM pegawai");
 	        }else{
@@ -217,19 +187,15 @@ $search = (isset($_GET['reset'])) ? '' : $search;
 	          $SqlQuery = mysqli_query($conn, "SELECT * FROM pegawai WHERE $kolomCari LIKE '%$kolomcari%'");
 	        }     
 	      
-	        //Hitung semua jumlah data yang berada pada tabel Sisawa
+
 	        $JumlahData = mysqli_num_rows($SqlQuery);
-	        
-	        // Hitung jumlah halaman yang tersedia
+
 	        $jumlahPage = ceil($JumlahData / $limit); 
-	        
-	        // Jumlah link number 
+
 	        $jumlahNumber = 1; 
 
-	        // Untuk awal link number
 	        $startNumber = ($page > $jumlahNumber)? $page - $jumlahNumber : 1; 
-	        
-	        // Untuk akhir link number
+
 	        $endNumber = ($page < ($jumlahPage - $jumlahNumber))? $page + $jumlahNumber : $jumlahPage; 
 	        
 	        for($i = $startNumber; $i <= $endNumber; $i++){
@@ -248,7 +214,6 @@ $search = (isset($_GET['reset'])) ? '' : $search;
 	      }
 	      ?>
 	      
-	      <!-- link Next Page -->
 	      <?php       
 	       if($page == $jumlahPage){ 
 	      ?>
@@ -271,15 +236,6 @@ $search = (isset($_GET['reset'])) ? '' : $search;
 	    </ul>
 	  </div>
 </div>
-		<!-- <ul class="pagination">			
-			<?php 
-			for($x=1;$x<=$halaman;$x++){
-				?>
-				<li><a href="?page=<?php echo $x ?>"><?php echo $x ?></a></li>
-				<?php
-			}
-			?>						
-		</ul> -->
 </div>
 
 <script src="js/app.js"></script>
