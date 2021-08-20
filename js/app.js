@@ -5,9 +5,9 @@ $(document).ready(function() {
   //   console.log('ok');
   // });
 
-  $('#cari').on('keyup', function() {
-    $('#container').load('ajax/pegawai.php?cari=' + $('#cari').val());
-  });
+  // $('#cari').on('keyup', function() {
+  //   $('#container').load('ajax/pegawai.php?cari=' + $('#cari').val());
+  // });
 
 
 });
